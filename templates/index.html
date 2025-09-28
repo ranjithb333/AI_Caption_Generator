@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Image Caption Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .img-preview {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card shadow-sm">
+            <h1 class="text-center mb-4">Image Caption Generator</h1>
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Upload an Image</label>
+                    <input type="file" class="form-control-file" id="file" name="file" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Generate Caption</button>
+            </form>
+
+            {% if filename %}
+            <div class="mt-4 text-center">
+                <h3>Uploaded Image:</h3>
+                <img src="{{ url_for('static', filename='uploads/' + filename) }}" class="img-preview img-thumbnail">
+            </div>
+            {% endif %}
+
+            {% if caption %}
+            <div class="mt-4 alert alert-success">
+                <h4>Generated Caption:</h4>
+                <p class="lead">{{ caption }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
